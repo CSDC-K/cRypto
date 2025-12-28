@@ -6,3 +6,4 @@ pub mod hex_lib;
 pub mod b64_lib;
 pub mod salt_gen;
 pub mod errors;
+pub mod cRyptit;

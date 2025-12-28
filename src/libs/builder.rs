@@ -1,13 +1,14 @@
 use crate::libs::argon2_lib;
 use crate::libs::ascon_xof_lib;
 use crate::libs::ascon_hash_lib;
+use crate::libs::cRyptit;
 use crate::libs::hex_lib;
 use crate::libs::errors;
 
 pub fn build_crypted(encr_method : &str, enco_type : &str, password : &str, salt_len : usize) -> Result<String, errors::cRyptoError>{
 
     let enco_types : Vec<&str> = vec!["B64", "HEX"];
-    let encr_methods : Vec<&str> = vec!["ARGON2", "ASCONHASH", "ASCONXOF"];
+    let encr_methods : Vec<&str> = vec!["ARGON2", "ASCONHASH", "ASCONXOF", "CRYPTIT"];
 
     if !enco_types.contains(&enco_type){
         return Err(errors::cRyptoError::EncoType(format!("ENCO_TYPE_ERROR! -> Not Founded Encode Type")));      // Not founded encode tpye
@@ -21,6 +22,7 @@ pub fn build_crypted(encr_method : &str, enco_type : &str, password : &str, salt
         "ARGON2" => argon2_lib::create_argon2(password, salt_len)?,
         "ASCONXOF" => ascon_xof_lib::create_asconXof(password, salt_len)?,
         "ASCONHASH" => ascon_hash_lib::create_asconHash(password, salt_len)?,
+        "CRYPTIT" => cRyptit::_func_get_cpu_info(password)?,
         _ => return Err(errors::cRyptoError::Unknown("MATCH OUT FROM SCOPE! // ENCR_TYPE".to_string()))
     };
     let encoded : String = match enco_type {

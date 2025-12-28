@@ -8,7 +8,6 @@ use libs::builder;
 #[derive(Parser, Debug)]
 #[command(version, about = "Rust Based cRypter Tool")]
 struct Args {
-    
     #[arg(short, long, default_value_t = String::from("ARGON2"), help="Encrypting Method\nValues: ARGON2, ASCON-HASH")]
     enc_method: String,
     #[arg(short, long, default_value_t = 16, help="Random Salt Lenght.")]
