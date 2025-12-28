@@ -1,5 +1,3 @@
-use std::fmt::format;
-
 use rand::distr::{Alphanumeric, SampleString};
 use crate::libs::errors;
 

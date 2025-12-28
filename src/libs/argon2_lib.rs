@@ -3,7 +3,7 @@ use crate::libs::salt_gen;
 use crate::libs::errors;
 
 pub fn create_argon2(password : &str, salt_len : usize) -> Result<Vec<u8>, errors::cRyptoError>{
-
+    
     let salt = salt_gen::salt_gen(salt_len)?;
 
     let mut output_key_material = vec![0u8; 32]; // Can be any desired size
