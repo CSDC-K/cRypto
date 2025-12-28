@@ -1,3 +1,6 @@
 pub mod argon2_lib;
 pub mod ascon_hash_lib;
 pub mod builder;
+pub mod hex_lib;
+pub mod b64_lib;
+pub mod salt_gen;
