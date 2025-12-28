@@ -13,7 +13,7 @@ struct Args {
     enc_method: String,
     #[arg(short, long, default_value_t = 16, help="Random Salt Lenght.")]
     salt_len : usize,
-    #[arg(long, default_value_t = String::from("B64"), help="Encoding type (Byte -> String) !NOTE: Encode will note create\nproblem for your password security.")]
+    #[arg(long, default_value_t = String::from("HEX"), help="Encoding type (Byte -> String) !NOTE: Encode will note create\nproblem for your password security.")]
     encode_type: String,
     #[arg(short, long, default_value_t = String::from("cRypto"))]
     pass: String

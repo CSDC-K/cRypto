@@ -11,6 +11,6 @@ pub enum cRyptoError {
     #[error("Not Foundend Encoding Type : {0}")]
     EncoType(String),
 
-    #[error("Unknown error occurred")]
+    #[error("Unknown error occurred : {0}")]
     Unknown(String),
 }
