@@ -14,13 +14,15 @@ pub fn build_crypted(encr_method : &str, enco_type : &str, password : &str, salt
     if !encr_methods.contains(&encr_method){
         return Err(errors::cRyptoError::EncrMethod(format!("ENCR_METHOD_ERROR! -> Not Founded Encrypt Type")));      // Not founded encryption method
     }
-    
 
-
-
-    let encrypted = argon2_lib::create_argon2(password, salt_len)?;
-    let encoded = hex_lib::encode_as_hex(&encrypted);
-    
+    let encrypted : Vec<u8> = match encr_method {
+        "ARGON2" => argon2_lib::create_argon2(password, salt_len)?,
+        _ => return Err(errors::cRyptoError::Unknown("MATCH OUT FROM SCOPE! // ENCR_TYPE".to_string()))
+    };
+    let encoded : String = match enco_type {
+        "HEX" => hex_lib::encode_as_hex(&encrypted),
+        _ => return Err(errors::cRyptoError::Unknown("MATCH OUT FROM SCOPE! // ENCO_TYPE".to_string()))
+    };
 
     
 

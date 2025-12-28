@@ -12,5 +12,5 @@ pub enum cRyptoError {
     EncoType(String),
 
     #[error("Unknown error occurred")]
-    Unknown,
+    Unknown(String),
 }
