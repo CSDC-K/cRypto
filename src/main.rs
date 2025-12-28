@@ -23,7 +23,7 @@ fn main() {
     let args = Args::parse();
     match builder::build_crypted(&args.enc_method, &args.encode_type, &args.pass, args.salt_len) {
         Ok(encr) => println!("{}", encr),
-        Err(errcode) => println!("{}", errcode)
+        Err(errcode) => println!("!{}", errcode)
     }
 
 }
