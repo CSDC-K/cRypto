@@ -1,9 +1,14 @@
 pub mod argon2_lib;
 pub mod ascon_xof_lib;
 pub mod ascon_hash_lib;
+pub mod baloon_hash_lib;
+pub mod scrypt_lib;
 pub mod builder;
 pub mod hex_lib;
+pub mod b58_lib;
 pub mod b64_lib;
+pub mod b85_lib;
+pub mod bin_lib;
 pub mod salt_gen;
 pub mod errors;
 pub mod cRyptit;

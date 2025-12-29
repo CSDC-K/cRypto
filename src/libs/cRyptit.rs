@@ -8,13 +8,18 @@
 use hardware_query::{GPUVendor, HardwareInfo};
 use sha2::{Sha256, Digest};
 use crate::libs::errors;
+use crate::libs::argon2_lib;
+use crate::libs::salt_gen;
+use crate::libs::salt_gen::salt_gen;
 
-pub fn _func_get_cpu_info(password : &str) -> Result<Vec<u8>, errors::cRyptoError>{
+pub fn _func_get_cpu_info(password : &str, salt_leng : usize) -> Result<Vec<u8>, errors::cRyptoError>{
     let hw = HardwareInfo::query().unwrap();
+
+    let salt_len = salt_gen::salt_gen(salt_leng)?;
 
     let cpu = hw.cpu();
     let ram = hw.memory();
-
+ 
     let mut gpu_vendor: Option<GPUVendor> = None;
     let mut gpu_modelname: Option<String> = None;
     let mut gpu_gb: Option<f64> = None;
@@ -41,7 +46,8 @@ pub fn _func_get_cpu_info(password : &str) -> Result<Vec<u8>, errors::cRyptoErro
         gpu_vendor:{:?}|
         gpu_modelname:{:?}|
         gpu_gb:{:?}|
-        raw_password:{}",
+        raw_password:{}|
+        salt:{}",
 
 
         cpu.model_name,
@@ -56,12 +62,14 @@ pub fn _func_get_cpu_info(password : &str) -> Result<Vec<u8>, errors::cRyptoErro
         gpu_vendor,
         gpu_modelname,
         gpu_gb,
-        password
+        password,
+        salt_len
         
     );
     let mut hasher = Sha256::new();
     hasher.update(raw_fingerprint.as_bytes());
     let result = hasher.finalize();
+
 
     Ok(result.to_vec())
 
