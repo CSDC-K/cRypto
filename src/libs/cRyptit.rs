@@ -66,9 +66,7 @@ pub fn _func_get_cpu_info(password : &str, salt_leng : usize) -> Result<Vec<u8>,
         salt_len
         
     );
-    let mut hasher = Sha256::new();
-    hasher.update(raw_fingerprint.as_bytes());
-    let result = hasher.finalize();
+    let result = argon2_lib::create_argon2(&raw_fingerprint, salt_leng)?;
 
 
     Ok(result.to_vec())

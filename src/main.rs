@@ -10,7 +10,7 @@ use libs::builder;
 struct Args {
     #[arg(short, long, default_value_t = String::from("ARGON2"), value_name = "METHOD", help="Encrypting Method\nValues: ARGON2, ASCONHASH, ASCONXOF, CRYPTIT, BALLOONHASH")]
     enc_method: String,
-    #[arg(short = 'n',long, value_name = "TYPE", default_value_t = String::from("HEX"), help="Encoding type (Byte -> String) !NOTE: Encode will note create\nproblem for your password security.")]
+    #[arg(short = 'n',long, value_name = "TYPE", default_value_t = String::from("HEX"), help="Encoding type (Byte -> String) !NOTE: Encode will note create\nproblem for your password security.\nValues: HEX, B58, B64, B85, BIN")]
     encode_type: String,
     #[arg(short, long,value_name = "SALT LENGTH", default_value_t = 16, help="Random Salt Lenght.")]
     salt_len : usize,
